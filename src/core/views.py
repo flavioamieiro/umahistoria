@@ -14,7 +14,7 @@ class ChapterListView(ListView):
 
 
 class NewChapterView(CreateView):
-    
+
     template_name = "core/novo_capitulo.html"
     form_class = ChapterForm
 
