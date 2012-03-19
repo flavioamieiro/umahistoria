@@ -1,1 +1,27 @@
-<h1>CAPITU-LO</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post">
+        <form class="form-horizontal" action="." method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Quem conta um conto, aumenta um ponto...</legend>
+                <div class="control-group">
+                    <label class="control-label">{{ form.image_url.label }}</label>
+                    <div class="controls">
+                        {{ form.image_url }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">{{ form.phrase.label }}</label>
+                    <div class="controls">
+                        {{ form.phrase }}
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input class="btn btn-inverse" type="submit"></button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
