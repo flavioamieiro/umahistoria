@@ -110,7 +110,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #e3e3e3;
 }
 a {
   color: #0088cc;
@@ -259,10 +259,12 @@ a:hover {
   width: 99.99999998999999%;
 }
 .container {
-  width: 940px;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   *zoom: 1;
+  height: 100%;
+  padding-top: 4em;
 }
 .container:before, .container:after {
   display: table;
@@ -282,6 +284,15 @@ a:hover {
 }
 .container-fluid:after {
   clear: both;
+}
+.post {
+  background: #eee;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
+  -moz-border-radius: 0.6em;
+  border: 1px solid #ccc;
 }
 p {
   margin: 0 0 9px;
@@ -2435,6 +2446,7 @@ button.btn.small, input[type="submit"].btn.small {
   *border-left-color: #ffffff;
 }
 .navbar {
+  position: static;
   overflow: visible;
   margin-bottom: 18px;
 }
@@ -2721,6 +2733,10 @@ button.btn.small, input[type="submit"].btn.small {
 .navbar .nav.pull-right .dropdown-menu:after {
   left: auto;
   right: 13px;
+}
+.navbar .container {
+  padding-top: 0;
+  background: transparent;
 }
 .breadcrumb {
   padding: 7px 14px;
