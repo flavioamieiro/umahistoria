@@ -13,5 +13,5 @@ def validate_url_is_image(url):
 
 class Chapter(models.Model):
     phrase = models.CharField(_(u"Frase"), max_length=140)
-    image_url = models.URLField(_(u"URL da imagem"), verify_exists=False, validators=[validate_url_is_image])
+    image_url = models.URLField(_(u"URL da imagem"), verify_exists=False, validators=[validate_url_is_image], blank=True, null=True)
     day = models.DateField(_(u"Data da publicação"), auto_now_add=True)
