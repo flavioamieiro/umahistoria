@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, TemplateView
 from django.core.urlresolvers import reverse
 
 from models import Chapter
@@ -21,3 +21,6 @@ class NewChapterView(CreateView):
     @property
     def success_url(self):
         return reverse("core:index")
+
+class SobreView(TemplateView):
+    template_name = "core/sobre.html"
