@@ -52,8 +52,13 @@ class RouterTest(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, "core/sobre.html")
 
+    def test_list_date_template(self):
+        response = self.client.get(reverse("core:date_history"))
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, "core/dates.html")
 
-class ListChaptersView(TestCase):
+
+class ListChaptersViewTest(TestCase):
 
     def setUp(self):
         mommy.make_one(Chapter)
@@ -67,7 +72,7 @@ class ListChaptersView(TestCase):
         self.assertEqual(list(Chapter.objects.filter(day=date.today())), list(response.context["chapters"]))
 
 
-class NewChapterView(TestCase):
+class NewChapterViewTest(TestCase):
 
     def setUp(self):
         self.post_data = {
