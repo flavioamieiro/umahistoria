@@ -7,6 +7,68 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+ 
+#title a{
+    color: #ccc;
+    font-size: 80%;
+    }
+    
+#title a:hover {
+    text-decoration:none;
+    }
+    
+#title{
+    float:right;
+    }
+    
+#conto {
+    background: #444;
+    border-radius: 0.6em;
+    -webkit-border-radius: 0.6em;
+    -moz-border-radius: 0.6em;
+    }
+    
+#conto a {
+    color: #eee;
+    }
+    
+.post_image {
+    max-width: 800px;
+    padding: 0.6em;
+    border-radius: 0.6em;
+    -webkit-border-radius: 0.6em;
+    -moz-border-radius: 0.6em;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-bottom: 1.2em;
+    }
+    
+.post_text {
+    font-family:Arial, sans;
+    letter-spacing: 0.1em;
+    }
+    
+.botao_form {
+    margin-right: 1em;
+    float:right
+    }
+ 
+.form_aumenta_ponto {
+  width: 50%;
+  background: #eee;
+  margin: 1em auto 1em auto;
+  padding: 1em;
+  border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
+  -moz-border-radius: 0.6em;
+  border: 1px solid #ccc;
+}
+
+.huge_text {
+    font-size: 20em;
+    color: #ccc;
+    }
+    
 article,
 aside,
 details,
@@ -272,6 +334,7 @@ a:hover {
 }
 .container:after {
   clear: both;
+  padding-bottom: 4em;
 }
 .container-fluid {
   padding-left: 20px;
@@ -720,6 +783,7 @@ select:focus {
 }
 .input-xlarge {
   width: 270px;
+  height: 2em;
 }
 .input-xxlarge {
   width: 530px;
@@ -848,6 +912,7 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;
 }
+
 .uneditable-input {
   display: block;
   background-color: #ffffff;
@@ -2188,6 +2253,7 @@ button.btn.small, input[type="submit"].btn.small {
   margin-left: 0;
   margin-bottom: 18px;
   list-style: none;
+  width: 100%;
 }
 .nav > li > a {
   display: block;
@@ -2651,6 +2717,7 @@ button.btn.small, input[type="submit"].btn.small {
 .navbar .nav > li {
   display: block;
   float: left;
+  
 }
 .navbar .nav > li > a {
   float: none;
@@ -2738,6 +2805,11 @@ button.btn.small, input[type="submit"].btn.small {
   padding-top: 0;
   background: transparent;
 }
+
+.navbar .container:after{
+  padding-bottom: 0;
+  }
+  
 .breadcrumb {
   padding: 7px 14px;
   margin: 0 0 18px;
