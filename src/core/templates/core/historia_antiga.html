@@ -1,0 +1,11 @@
+{% extends "core/index.html" %}
+
+{% block content %}
+    <div class="page_title">
+        <center>
+            <h1>Histórias do dia {{ full_date|date:"SHORT_DATE_FORMAT"}}</h1>
+        </center>
+    </div>
+
+    {{ block.super }}
+{% endblock %}

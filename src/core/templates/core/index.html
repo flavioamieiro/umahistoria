@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for chapter in chapters %}
+    <div class="post" id="{{ chapter.id }}">
+        <h2> Capítulo #{{ forloop.counter }}</h2>
+        <br>
+        <center>
+            <img data-original="{{ chapter.image_url }}" src="{{ STATIC_URL }}img/grey.gif" class="post_image lazyload">
+            <p class="post_text">
+                "{{ chapter.phrase }}"
+            </p>
+        </center>
+    </div>
+{% endfor %}
+{% endblock %}
