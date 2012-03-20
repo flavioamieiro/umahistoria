@@ -96,7 +96,7 @@ class NewChapterViewTest(TestCase):
     def test_valid_post(self):
         self.assertEqual(Chapter.objects.count(), 0)
         response = self.client.post(reverse("core:new_chapter"), self.post_data)
-        self.assertRedirects(response, reverse("core:index"))
+        self.assertRedirects(response, reverse("core:index") + "#1")
         self.assertEqual(Chapter.objects.count(), 1)
 
 
