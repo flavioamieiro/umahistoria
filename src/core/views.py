@@ -23,3 +23,9 @@ class NewChapterView(CreateView):
 
 class SobreView(TemplateView):
     template_name = "core/sobre.html"
+
+
+class DateHistoryView(ListView):
+    template_name = "core/dates.html"
+    context_object_name = "dates"
+    queryset = Chapter.objects.distinct('day').values_list('day', flat=True)

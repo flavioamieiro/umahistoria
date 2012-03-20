@@ -98,3 +98,19 @@ class NewChapterViewTest(TestCase):
         response = self.client.post(reverse("core:new_chapter"), self.post_data)
         self.assertRedirects(response, reverse("core:index"))
         self.assertEqual(Chapter.objects.count(), 1)
+
+
+class DateHistoryViewTest(TestCase):
+
+    def setUp(self):
+        mommy.make_one(Chapter)
+        mommy.make_one(Chapter)
+        old = mommy.make_one(Chapter)
+        old.day = date.today() - timedelta(days=1)
+        old.save()
+
+    def test_correct_list(self):
+        response = self.client.get(reverse("core:date_history"))
+        self.assertIn("dates", response.context)
+        self.assertEqual(len(response.context["dates"]), 2)
+        self.assertEqual(list(Chapter.objects.distinct('day').values_list('day', flat=True)), list(response.context["dates"]))
