@@ -12,9 +12,9 @@ class ChapterFormtTest(TestCase):
     def test_accept_image_url(self):
         url="https://www.djangoproject.com/m/img/site/hdr_logo.png"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
-        self.assertTrue(form.is_valid())
         url="https://www.djangoproject.com/m/img/site/hdr_logo.jpg"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
+        self.assertTrue(form.is_valid())
         self.assertTrue(form.is_valid())
         url="https://www.djangoproject.com/m/img/site/hdr_logo.jpeg"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
@@ -36,7 +36,7 @@ class ChapterFormtTest(TestCase):
 
 
 class RouterTest(TestCase):
-    
+
     def test_index_correct_template(self):
         response = self.client.get(reverse("core:index"))
         self.assertEqual(200, response.status_code)
@@ -47,8 +47,18 @@ class RouterTest(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, "core/novo_capitulo.html")
 
+    def test_correct_template(self):
+        response = self.client.get(reverse("core:about"))
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, "core/sobre.html")
 
-class ListChaptersView(TestCase):
+    def test_list_date_template(self):
+        response = self.client.get(reverse("core:date_history"))
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, "core/dates.html")
+
+
+class ListChaptersViewTest(TestCase):
 
     def setUp(self):
         mommy.make_one(Chapter)
@@ -62,7 +72,7 @@ class ListChaptersView(TestCase):
         self.assertEqual(list(Chapter.objects.filter(day=date.today())), list(response.context["chapters"]))
 
 
-class NewChapterView(TestCase):
+class NewChapterViewTest(TestCase):
 
     def setUp(self):
         self.post_data = {
@@ -84,12 +94,23 @@ class NewChapterView(TestCase):
         self.assertTrue(response.context["form"].errors)
 
     def test_valid_post(self):
-        self.assertEqual(Chapter.objects.count(), 0)        
+        self.assertEqual(Chapter.objects.count(), 0)
         response = self.client.post(reverse("core:new_chapter"), self.post_data)
         self.assertRedirects(response, reverse("core:index"))
         self.assertEqual(Chapter.objects.count(), 1)
 
-class SobreView(TestCase):
-    def test_correct_template(self):
-        response = self.client.get(reverse("core:about"), {})
-        self.assertEqual(200, response.status_code)
+
+class DateHistoryViewTest(TestCase):
+
+    def setUp(self):
+        mommy.make_one(Chapter)
+        mommy.make_one(Chapter)
+        old = mommy.make_one(Chapter)
+        old.day = date.today() - timedelta(days=1)
+        old.save()
+
+    def test_correct_list(self):
+        response = self.client.get(reverse("core:date_history"))
+        self.assertIn("dates", response.context)
+        self.assertEqual(len(response.context["dates"]), 2)
+        self.assertEqual(list(Chapter.objects.distinct('day').values_list('day', flat=True)), list(response.context["dates"]))

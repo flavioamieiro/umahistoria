@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="post">
+        <ul>
+            {% for day in dates %}
+            <li>{{ day|date:"SHORT_DATE_FORMAT" }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock%}
