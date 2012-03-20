@@ -18,7 +18,7 @@ class NewChapterView(CreateView):
 
     @property
     def success_url(self):
-        return reverse("core:index")
+        return reverse("core:index") + "#%d" % self.object.id
 
 
 class SobreView(TemplateView):
@@ -53,5 +53,3 @@ class DayChaptersView(ListView):
         context = super(DayChaptersView, self).get_context_data(**kwargs)
         context.update({'full_date': self.date_params})
         return context
-
-
