@@ -7,17 +7,19 @@
             <fieldset>
                 <center>
                     <legend>Quem conta um conto, aumenta um ponto...</legend>
+                    <p>A frase deve ter no máximo 140 caracteres, pra não ficar muito grande.</p>
+                    <br>
                 </center>
+                <div class="control-group">
+                    <label class="control-label">Frase*:</label>
+                    <div class="controls">
+                        {{ form.phrase }}{{ form.phrase.errors }}
+                    </div>
+                </div>
                 <div class="control-group">
                     <label class="control-label">Endereço da imagem:</label>
                     <div class="controls">
                         {{ form.image_url }}{{ form.image_url.errors }}
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Frase:</label>
-                    <div class="controls">
-                        {{ form.phrase }}{{ form.phrase.errors }}
                     </div>
                 </div>
                 <div class="botao_form">
