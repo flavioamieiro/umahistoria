@@ -14,6 +14,13 @@
             </p>
         </center>
     </div>
+    {% if forloop.last %}
+        <div class="post">
+            <center>
+                <h3><a href="{% url core:new_chapter %}">Continue a história...</a></h3>
+            </center>
+        </div>
+    {% endif %}
 {% empty %}
     <div class="post">
         <center>
