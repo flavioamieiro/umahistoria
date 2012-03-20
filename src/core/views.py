@@ -31,3 +31,17 @@ class DateHistoryView(ListView):
 
     def get_queryset(self):
         return Chapter.objects.distinct('day').exclude(day=date.today()).values_list('day', flat=True)
+
+
+class DayChaptersView(ListView):
+    template_name = "core/index.html"
+    context_object_name = "chapters"
+    allow_empty = False
+
+    def get_queryset(self):
+        day = int(self.kwargs['day'])
+        month = int(self.kwargs['month'])
+        year = int(self.kwargs['year'])
+        filter_date = date(year, month, day)
+        today = date.today()
+        return Chapter.objects.exclude(day=today).filter(day=filter_date)
