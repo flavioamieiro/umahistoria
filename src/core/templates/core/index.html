@@ -14,5 +14,12 @@
             </p>
         </center>
     </div>
+{% empty %}
+    <div class="post">
+        <center>
+            <h2>Ainda não começaram a história de hoje!</h2>
+            <h3>Se quiser ser o primeiro, <a href="{% url core:new_chapter %}">aumente um ponto</a>!</h3>
+        </center>
+    </div>
 {% endfor %}
 {% endblock %}

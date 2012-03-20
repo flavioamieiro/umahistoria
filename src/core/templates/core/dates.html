@@ -7,6 +7,11 @@
         <ul class="historico post_image">
             {% for iter_date in dates %}
             <li><a href="{% url core:day_chapters iter_date.year iter_date.month iter_date.day %}">{{ iter_date|date:"SHORT_DATE_FORMAT" }}</a></li>
+            {% empty %}
+            <center>
+                <h2>Ainda não existem histórias antigas...</h2>
+                <h3>Espere por amanhã!</h3>
+            </center>
             {% endfor %}
         </ul>
     </div>
