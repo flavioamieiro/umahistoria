@@ -7,37 +7,37 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
- 
+
 .errorlist {
     list-style:none;
     color: #f00;
     font-weight:bold;
     }
- 
+
 #title a{
     color: #ccc;
     font-size: 80%;
     }
-    
+
 #title a:hover {
     text-decoration:none;
     }
-    
+
 #title{
     float:right;
     }
-    
+
 #conto {
     background: #444;
     border-radius: 0.6em;
     -webkit-border-radius: 0.6em;
     -moz-border-radius: 0.6em;
     }
-    
+
 #conto a {
     color: #eee;
     }
-    
+
 .post_image {
     max-width: 800px;
     padding: 0.6em;
@@ -48,17 +48,18 @@
     background: #fff;
     margin-bottom: 1.2em;
     }
-    
+
 .post_text {
     font-family:Arial, sans;
     letter-spacing: 0.1em;
+    font-size: 1.5em;
     }
-    
+
 .botao_form {
     margin-right: 1em;
     float:right
     }
- 
+
 .form_aumenta_ponto {
   width: 50%;
   background: #eee;
@@ -74,13 +75,13 @@
     font-size: 20em;
     color: #ccc;
     }
-    
+
 .historico {
     list-style:none;
     font-size: 1.1em;
     text-align:center;
     }
-    
+
 article,
 aside,
 details,
@@ -2729,7 +2730,7 @@ button.btn.small, input[type="submit"].btn.small {
 .navbar .nav > li {
   display: block;
   float: left;
-  
+
 }
 .navbar .nav > li > a {
   float: none;
@@ -2821,7 +2822,7 @@ button.btn.small, input[type="submit"].btn.small {
 .navbar .container:after{
   padding-bottom: 0;
   }
-  
+
 .breadcrumb {
   padding: 7px 14px;
   margin: 0 0 18px;
