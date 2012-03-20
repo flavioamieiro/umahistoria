@@ -28,4 +28,6 @@ class SobreView(TemplateView):
 class DateHistoryView(ListView):
     template_name = "core/dates.html"
     context_object_name = "dates"
-    queryset = Chapter.objects.distinct('day').values_list('day', flat=True)
+
+    def get_queryset(self):
+        return Chapter.objects.distinct('day').exclude(day=date.today()).values_list('day', flat=True)

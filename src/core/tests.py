@@ -112,5 +112,5 @@ class DateHistoryViewTest(TestCase):
     def test_correct_list(self):
         response = self.client.get(reverse("core:date_history"))
         self.assertIn("dates", response.context)
-        self.assertEqual(len(response.context["dates"]), 2)
-        self.assertEqual(list(Chapter.objects.distinct('day').values_list('day', flat=True)), list(response.context["dates"]))
+        self.assertEqual(len(response.context["dates"]), 1)
+        self.assertEqual(list(Chapter.objects.distinct('day').exclude(day=date.today()).values_list('day', flat=True)), list(response.context["dates"]))
