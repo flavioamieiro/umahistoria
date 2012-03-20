@@ -132,7 +132,13 @@ class DayChaptersViewTestCase(TestCase):
         day, month, year = self.ontem.day, self.ontem.month, self.ontem.year
         response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
         self.assertEqual(200, response.status_code)
-        self.assertTemplateUsed(response, "core/index.html")
+        self.assertTemplateUsed(response, "core/historia_antiga.html")
+
+    def test_correct_extra_content(self):
+        day, month, year = self.ontem.day, self.ontem.month, self.ontem.year
+        response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
+        self.assertIn("full_date", response.context)
+        self.assertEqual(self.ontem, response.context['full_date'])
 
     def test_404_if_date_does_not_exist(self):
         response = self.client.get(reverse("core:day_chapters", args=[2011, 1, 1]))

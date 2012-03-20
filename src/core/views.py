@@ -34,14 +34,24 @@ class DateHistoryView(ListView):
 
 
 class DayChaptersView(ListView):
-    template_name = "core/index.html"
+    template_name = "core/historia_antiga.html"
     context_object_name = "chapters"
     allow_empty = False
 
-    def get_queryset(self):
+    @property
+    def date_params(self):
         day = int(self.kwargs['day'])
         month = int(self.kwargs['month'])
         year = int(self.kwargs['year'])
-        filter_date = date(year, month, day)
+        return date(year, month, day)
+
+    def get_queryset(self):
         today = date.today()
-        return Chapter.objects.exclude(day=today).filter(day=filter_date)
+        return Chapter.objects.exclude(day=today).filter(day=self.date_params)
+
+    def get_context_data(self, **kwargs):
+        context = super(DayChaptersView, self).get_context_data(**kwargs)
+        context.update({'full_date': self.date_params})
+        return context
+
+
