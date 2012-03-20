@@ -112,5 +112,45 @@ class DateHistoryViewTest(TestCase):
     def test_correct_list(self):
         response = self.client.get(reverse("core:date_history"))
         self.assertIn("dates", response.context)
-        self.assertEqual(len(response.context["dates"]), 2)
-        self.assertEqual(list(Chapter.objects.distinct('day').values_list('day', flat=True)), list(response.context["dates"]))
+        self.assertEqual(len(response.context["dates"]), 1)
+        self.assertEqual(list(Chapter.objects.distinct('day').exclude(day=date.today()).values_list('day', flat=True)), list(response.context["dates"]))
+
+
+class DayChaptersViewTestCase(TestCase):
+
+    def setUp(self):
+        mommy.make_one(Chapter)
+        self.ontem = date.today() - timedelta(days=1)
+        old = mommy.make_one(Chapter)
+        old.day = self.ontem
+        old.save()
+        old = mommy.make_one(Chapter)
+        old.day = self.ontem
+        old.save()
+
+    def test_correct_template(self):
+        day, month, year = self.ontem.day, self.ontem.month, self.ontem.year
+        response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, "core/historia_antiga.html")
+
+    def test_correct_extra_content(self):
+        day, month, year = self.ontem.day, self.ontem.month, self.ontem.year
+        response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
+        self.assertIn("full_date", response.context)
+        self.assertEqual(self.ontem, response.context['full_date'])
+
+    def test_404_if_date_does_not_exist(self):
+        response = self.client.get(reverse("core:day_chapters", args=[2011, 1, 1]))
+        self.assertEqual(404, response.status_code)
+
+    def test_correct_chapters(self):
+        day, month, year = self.ontem.day, self.ontem.month, self.ontem.year
+        response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
+        self.assertIn("chapters", response.context)
+        self.assertEqual(list(Chapter.objects.filter(day=self.ontem)), list(response.context["chapters"]))
+
+    def test_404_for_today(self):
+        day, month, year = date.today().day, date.today().month, date.today().year
+        response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
+        self.assertEqual(response.status_code, 404)

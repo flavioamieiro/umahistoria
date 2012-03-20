@@ -28,4 +28,30 @@ class SobreView(TemplateView):
 class DateHistoryView(ListView):
     template_name = "core/dates.html"
     context_object_name = "dates"
-    queryset = Chapter.objects.distinct('day').values_list('day', flat=True)
+
+    def get_queryset(self):
+        return Chapter.objects.distinct('day').exclude(day=date.today()).values_list('day', flat=True)
+
+
+class DayChaptersView(ListView):
+    template_name = "core/historia_antiga.html"
+    context_object_name = "chapters"
+    allow_empty = False
+
+    @property
+    def date_params(self):
+        day = int(self.kwargs['day'])
+        month = int(self.kwargs['month'])
+        year = int(self.kwargs['year'])
+        return date(year, month, day)
+
+    def get_queryset(self):
+        today = date.today()
+        return Chapter.objects.exclude(day=today).filter(day=self.date_params)
+
+    def get_context_data(self, **kwargs):
+        context = super(DayChaptersView, self).get_context_data(**kwargs)
+        context.update({'full_date': self.date_params})
+        return context
+
+
