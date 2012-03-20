@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="post">
+    <div class="form_aumenta_ponto">
         <form class="form-horizontal" action="." method="post">
             {% csrf_token %}
             <fieldset>
                 <legend>Quem conta um conto, aumenta um ponto...</legend>
                 <div class="control-group">
-                    <label class="control-label">{{ form.image_url.label }}</label>
+                    <label class="control-label">Endereço da imagem</label>
                     <div class="controls">
                         {{ form.image_url }}
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">{{ form.phrase.label }}</label>
+                    <label class="control-label">Frase</label>
                     <div class="controls">
                         {{ form.phrase }}
                     </div>
                 </div>
-                <div class="form-actions">
+                <div class="botao_form">
                     <input class="btn btn-inverse" type="submit"></button>
                 </div>
             </fieldset>

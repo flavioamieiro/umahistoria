@@ -89,6 +89,7 @@ class NewChapterView(TestCase):
         self.assertRedirects(response, reverse("core:index"))
         self.assertEqual(Chapter.objects.count(), 1)
 
-
-
-
+class SobreView(TestCase):
+    def test_correct_template(self):
+        response = self.client.get(reverse("core:about"), {})
+        self.assertEqual(200, response.status_code)

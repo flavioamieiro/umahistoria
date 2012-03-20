@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="post">
+        <h1>Sobre Os Caras</h1>
+        <br>
+        <p>Um belo dia, <a href="http://lucianoratamero.com/" alt="QUE MENINO LINDO!">Luciano Ratamero</a> e <a href="http://bernardofontes.net" alt="Esse não é bonito não">Bernardo Fontes</a> decidiram pegar um projeto de desenvolvimento web juntos, mas Luciano não sabia muito <a href="http://www.djangoproject.com/" alt="MUITO FODA">Django</a>.</p>
+        <p>Os dois então decidiram que seria legal fazerem algum projeto pequeno antes de embarcarem de vez em trabalhos mais sérios. Eis que surgiu a ideia de trazer pra web aquela brincadeira de colégio, de todos escreverem coletivamente uma história sem noção nem sentido.</p>
+        <p>Um dia e meio depois, surgiu o <a href="{% url core:index %}">Uma história por dia</a>.</p>
+    </div>
+{% endblock %}

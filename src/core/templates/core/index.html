@@ -4,9 +4,9 @@
 {% for chapter in chapters %}
     <div class="post" id="{{ chapter.id }}">
         <center>
-            <img src="{{ chapter.image_url }}">
-            <p class="text">
-                {{ chapter.phrase }}
+            <img src="{{ chapter.image_url }}" class="post_image">
+            <p class="post_text">
+                "{{ chapter.phrase }}"
             </p>
         </center>
     </div>

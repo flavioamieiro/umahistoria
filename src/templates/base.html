@@ -11,19 +11,21 @@
             <div class="container">
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li>
-                            <a href="{% url core:index %}" alt="Home">
-                                Uma história por dia
-                            </a>
+                        <li id="title">
+                            <h1>
+                                <a href="{% url core:index %}" alt="Home">
+                                    Uma história por dia
+                                </a>
+                            </h1>
                         </li>
                         <li>
-                            <a href="{% url core:new_chapter %}" alt="Aumente um ponto">
-                                Aumente um ponto
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
+                            <a href="{% url core:about %}">
                                 Sobre
+                            </a>
+                        </li>
+                        <li id="conto">
+                            <a href="{% url core:new_chapter %}" alt="Aumente um ponto">
+                                <img src="{{ STATIC_URL }}img/plus.gif"> Aumente um ponto
                             </a>
                         </li>
                     </ul>
