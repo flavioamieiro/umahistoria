@@ -32,7 +32,7 @@ class ChapterFormtTest(TestCase):
         form = ChapterForm({})
         self.assertFalse(form.is_valid())
         self.assertTrue(form.errors.get('phrase'))
-        self.assertTrue(form.errors.get('image_url'))
+        self.assertFalse(form.errors.get('image_url'))
 
 
 class RouterTest(TestCase):
