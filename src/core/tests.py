@@ -12,9 +12,9 @@ class ChapterFormtTest(TestCase):
     def test_accept_image_url(self):
         url="https://www.djangoproject.com/m/img/site/hdr_logo.png"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
-        self.assertTrue(form.is_valid())
         url="https://www.djangoproject.com/m/img/site/hdr_logo.jpg"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
+        self.assertTrue(form.is_valid())
         self.assertTrue(form.is_valid())
         url="https://www.djangoproject.com/m/img/site/hdr_logo.jpeg"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
@@ -36,7 +36,7 @@ class ChapterFormtTest(TestCase):
 
 
 class RouterTest(TestCase):
-    
+
     def test_index_correct_template(self):
         response = self.client.get(reverse("core:index"))
         self.assertEqual(200, response.status_code)
@@ -46,6 +46,11 @@ class RouterTest(TestCase):
         response = self.client.get(reverse("core:new_chapter"))
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, "core/novo_capitulo.html")
+
+    def test_correct_template(self):
+        response = self.client.get(reverse("core:about"))
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, "core/sobre.html")
 
 
 class ListChaptersView(TestCase):
@@ -84,12 +89,7 @@ class NewChapterView(TestCase):
         self.assertTrue(response.context["form"].errors)
 
     def test_valid_post(self):
-        self.assertEqual(Chapter.objects.count(), 0)        
+        self.assertEqual(Chapter.objects.count(), 0)
         response = self.client.post(reverse("core:new_chapter"), self.post_data)
         self.assertRedirects(response, reverse("core:index"))
         self.assertEqual(Chapter.objects.count(), 1)
-
-class SobreView(TestCase):
-    def test_correct_template(self):
-        response = self.client.get(reverse("core:about"), {})
-        self.assertEqual(200, response.status_code)
