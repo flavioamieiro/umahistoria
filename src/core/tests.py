@@ -144,6 +144,11 @@ class DayChaptersViewTestCase(TestCase):
         response = self.client.get(reverse("core:day_chapters", args=[2011, 1, 1]))
         self.assertEqual(404, response.status_code)
 
+    def test_404_if_params_cannot_form_date_object(self):
+        #Teste de regressao
+        response = self.client.get(reverse("core:day_chapters", args=[0, 0, 0]))
+        self.assertEqual(404, response.status_code)
+
     def test_correct_chapters(self):
         day, month, year = self.ontem.day, self.ontem.month, self.ontem.year
         response = self.client.get(reverse("core:day_chapters", args=[year, month, day]))
