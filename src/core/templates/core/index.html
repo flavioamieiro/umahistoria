@@ -14,7 +14,7 @@
             </p>
         </center>
     </div>
-    {% if forloop.last %}
+    {% if forloop.last and not full_date %}
         <div class="post">
             <center>
                 <h3><a href="{% url core:new_chapter %}">Continue a história...</a></h3>
