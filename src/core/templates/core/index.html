@@ -3,7 +3,7 @@
 {% block content %}
 {% for chapter in chapters %}
     <div class="post" id="{{ chapter.id }}">
-        <h2> Capítulo #{{ forloop.counter }}</h2>
+        <h2><a href="{% url core:chapter chapter.pk %}">Capítulo #{{ forloop.counter }}</a></h2>
         <br>
         <center>
             {% if chapter.image_url %}
