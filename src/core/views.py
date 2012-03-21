@@ -2,6 +2,7 @@ from datetime import date
 
 from django.views.generic import ListView, CreateView, TemplateView
 from django.core.urlresolvers import reverse
+from django.http import Http404
 
 from models import Chapter
 from forms import ChapterForm
@@ -43,7 +44,10 @@ class DayChaptersView(ListView):
         day = int(self.kwargs['day'])
         month = int(self.kwargs['month'])
         year = int(self.kwargs['year'])
-        return date(year, month, day)
+        try:
+            return date(year, month, day)
+        except:
+            raise Http404
 
     def get_queryset(self):
         today = date.today()
