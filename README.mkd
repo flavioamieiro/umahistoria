@@ -1,0 +1,17 @@
+Uma história por dia
+===================
+
+Dev setup
+---------
+
+Para contribuir com o projeto basta ter instalado o Django 1.3 ou versão superior na sua máquina.
+
+Caso você tenha o [virtualenv](!http://www.doughellmann.com/projects/virtualenvwrapper/) instalado, você pode utilizar o bootstrap para montar o ambiente virtual. Para isso, execute:
+
+```
+$ cd SEU_DIRETORIO_DE_VIRTUAL_ENVS
+$ git glone git@github.com:SEU_USUARIO_COM_SEU_FORK/umahistoria.git
+$ python umahistoria/bootstrap/python2_X.py
+```
+
+Com isso você já terá um ambiente de desenvolvimento preparado para o projeto.
