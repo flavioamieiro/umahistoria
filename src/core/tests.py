@@ -7,7 +7,7 @@ from django.test import TestCase
 from forms import ChapterForm
 from models import Chapter
 
-class ChapterFormtTest(TestCase):
+class ChapterFormTest(TestCase):
 
     def test_accept_image_url(self):
         url="https://www.djangoproject.com/m/img/site/hdr_logo.png"
