@@ -1,0 +1,14 @@
+{% extends "core/index.html" %}
+
+{% block content %}
+<div class="post" id="{{ chapter.id }}">
+    <center>
+        {% if chapter.image_url %}
+        <img data-original="{{ chapter.image_url }}" src="{{ STATIC_URL }}img/grey.gif" class="post_image lazyload">
+        {% endif %}
+        <p class="post_text">
+            "{{ chapter.phrase }}"
+        </p>
+    </center>
+</div>
+{% endblock %}
