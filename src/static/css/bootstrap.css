@@ -295,6 +295,11 @@ a:hover {
   -moz-border-radius: 0.6em;
   border: 1px solid #ccc;
 }
+
+.post > h2 > a {
+  color: #333;
+}
+
 p {
   margin: 0 0 9px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

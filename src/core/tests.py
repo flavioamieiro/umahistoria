@@ -44,6 +44,12 @@ class RouterTest(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, "core/novo_capitulo.html")
 
+    def test_ChapterDetail_template(self):
+        chapter = mommy.make_one(Chapter)
+        response = self.client.get(reverse("core:chapter", kwargs={'pk': chapter.pk}))
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, "core/chapter_detail.html")
+
     def test_correct_template(self):
         response = self.client.get(reverse("core:about"))
         self.assertEqual(200, response.status_code)
@@ -67,6 +73,21 @@ class ListChaptersViewTest(TestCase):
         response = self.client.get(reverse("core:index"))
         self.assertIn("chapters", response.context)
         self.assertEqual(list(Chapter.objects.filter(day=date.today())), list(response.context["chapters"]))
+
+
+class ChapterDetailViewTest(TestCase):
+
+    def setUp(self):
+        self.chapter = mommy.make_one(Chapter)
+
+    def test_correct_chapter(self):
+        response = self.client.get(reverse("core:chapter", kwargs={'pk': self.chapter.pk}))
+        self.assertIn("chapter", response.context)
+        self.assertEqual(Chapter.objects.get(pk=self.chapter.pk), response.context["chapter"])
+
+    def test_inexistent_chapter(self):
+        response = self.client.get(reverse("core:chapter", kwargs={'pk': 2}))
+        self.assertEqual(404, response.status_code)
 
 
 class NewChapterViewTest(TestCase):

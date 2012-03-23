@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.views.generic import ListView, CreateView, TemplateView
+from django.views.generic import ListView, CreateView, TemplateView, DetailView
 from django.core.urlresolvers import reverse
 from django.http import Http404
 
@@ -11,6 +11,10 @@ class ChapterListView(ListView):
     template_name = "core/index.html"
     context_object_name = "chapters"
     queryset = Chapter.objects.filter(day=date.today())
+
+class ChapterDetailView(DetailView):
+    context_object_name = "chapter"
+    queryset = Chapter.objects.all()
 
 
 class NewChapterView(CreateView):
