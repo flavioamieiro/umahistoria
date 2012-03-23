@@ -9,22 +9,19 @@ from models import Chapter
 
 class ChapterFormTest(TestCase):
 
-    def test_accept_image_url(self):
-        url="https://www.djangoproject.com/m/img/site/hdr_logo.png"
-        form = ChapterForm({"image_url": url, "phrase": "xxx"})
-        url="https://www.djangoproject.com/m/img/site/hdr_logo.jpg"
-        form = ChapterForm({"image_url": url, "phrase": "xxx"})
-        self.assertTrue(form.is_valid())
-        self.assertTrue(form.is_valid())
-        url="https://www.djangoproject.com/m/img/site/hdr_logo.jpeg"
-        form = ChapterForm({"image_url": url, "phrase": "xxx"})
-        self.assertTrue(form.is_valid())
-        url="https://www.djangoproject.com/m/img/site/hdr_logo.gif"
+    def accept_image_url_with_extension(self, extension):
+        url = "https://www.djangoproject.com/m/img/site/hdr_logo.{0}".format(extension)
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
         self.assertTrue(form.is_valid())
 
+    def test_accept_image_url(self):
+        self.accept_image_url_with_extension("png")
+        self.accept_image_url_with_extension("jpg")
+        self.accept_image_url_with_extension("jpeg")
+        self.accept_image_url_with_extension("gif")
+
     def test_incorrect_image_url(self):
-        url="https://www.djangoproject.com/m/img/site/hdr_logo"
+        url = "https://www.djangoproject.com/m/img/site/hdr_logo"
         form = ChapterForm({"image_url": url, "phrase": "xxx"})
         self.assertFalse(form.is_valid())
 
