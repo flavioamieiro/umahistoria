@@ -7,13 +7,13 @@
             <fieldset>
                 <center>
                     <legend>Quem conta um conto, aumenta um ponto...</legend>
-                    <p>A frase deve ter no máximo 140 caracteres, pra não ficar muito grande.</p>
                     <br>
                 </center>
                 <div class="control-group">
                     <label class="control-label">Frase*:</label>
                     <div class="controls">
                         {{ form.phrase }}{{ form.phrase.errors }}
+                        <p class="help-block">Máximo de 140 caracteres</p>
                     </div>
                 </div>
                 <div class="control-group">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="botao_form">
-                    <input class="btn btn-inverse" type="submit"></button>
+                    <input class="btn btn-inverse" type="submit" value="Aumentar"/>
                 </div>
             </fieldset>
         </form>
